@@ -1,0 +1,22 @@
+syntax = "proto3";
+import "User.proto"; // 导入外部的proto文件
+// 请求的类型
+enum RequestType {
+    RT_UNKNOWN = 0; // 未知请求
+    RT_LOGIN = 1; // 登陆请求
+    RT_MESSAGE = 2; // 信息
+}
+// 夹带的参数
+enum RequestData {
+    RD_UNKNOWN = 0; // 未知类型
+    RD_USER = 1; // 类型为User
+}
+// 基础请求类型
+message BaseRequest {
+    int32 id = 1; // 是谁发送的请求
+    RequestType requestType = 2;
+    RequestData requestData = 3;
+    oneof data { // oneof表示这里面的占用相同的地址
+        User user = 4;
+    }
+}

@@ -1,44 +1,26 @@
-﻿using System;
+﻿using Commit.Config;
+using LockStepDemo1.Server.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
 using System.Net;
-using Google.Protobuf;
-using Commit.Config;
-
-namespace LockStepDemo1
+using System.Net.Sockets;
+using System.Text;
+using System.Threading.Tasks;
+/*
+    UDP的服务端
+ */
+namespace LockStepDemo1.Server
 {
-
-    internal class Program
+    internal class UdpServer
     {
         private static int port = NetConfig.UDP_PORT;
-        private static List<IPEndPoint> clients = new List<IPEndPoint>();
-        private static List<IPEndPoint> activeClients = new List<IPEndPoint>();
-        private static List<string> names = new List<string>();
         private static UdpClient udpServer = new UdpClient(port);
-        private static List<User> users = new List<User>();
-        private static void Init()
+        // 添加连入的用户的信息（用于广播）  key表示的是id
+        private static Dictionary<int, ClientInfo> activeClients = new Dictionary<int, ClientInfo>(); 
+        // 启动upd的server
+        public static void Start()
         {
-            users.Add(NewUser("张三", "123", 12347));
-            users.Add(NewUser("里斯", "123", 12348));
-            users.Add(NewUser("王五", "123", 12349));
-            users.Add(NewUser("张柳", "123", 12350));
-            users.Add(NewUser("力气", "123", 12351));
-            users.Add(NewUser("Admin", "123", 12352));
-        }
-        private static User NewUser(string name, string password, int port)
-        {
-            return new User()
-            {
-                Name = name,
-                Password = password,
-                Prot = port
-            };
-        }
-
-        static void Main()
-        {
-            Init(); // 初始化user
             Console.WriteLine("🚀 UDP 聊天服务器已启动，等待消息...");
 
             IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Any, port);
@@ -51,36 +33,9 @@ namespace LockStepDemo1
             udpServer.Client.IOControl((int)SIO_UDP_CONNRESET, new byte[] { Convert.ToByte(false) }, null);
             ReceiveMessages();
         }
-
-        static void Main3()
-        {
-            // 创建一个新的 Person 对象并赋值
-            User person = new User
-            {
-                Name = "Alice",
-                Id = 123,
-                Password = "asfsa",
-            };
-
-            // 序列化为二进制数据
-            byte[] data;
-            data = person.ToByteArray();
-            // 将数据写入文件（可选）
-            //File.WriteAllBytes("person.bin", data);
-
-            Console.WriteLine(data.Length);
-            // 反序列化
-            //Person newPerson;
-            //using (var stream = new MemoryStream(data))
-            //{
-            //    newPerson = Person.Parser.ParseFrom(stream);
-            //}
-            Person newPerson = Person.Parser.ParseFrom(data);
-            // 输出结果
-            Console.WriteLine($"Name: {newPerson.Name}, ID: {newPerson.Id}");
-            Console.WriteLine("Phones: " + string.Join(", ", newPerson.Phone));
-        }
-
+        /// <summary>
+        /// 循环接收信息
+        /// </summary>
         private static void ReceiveMessages()
         {
             // 假设这是接收消息的循环
@@ -90,12 +45,12 @@ namespace LockStepDemo1
                 try
                 {
                     byte[] receivedData = udpServer.Receive(ref clientEndPoint);
-
+                    //BaseRequest requset = 
                     // 处理接收到的数据...
                     HandleReceivedData(receivedData, clientEndPoint);
 
                     // 更新活动客户端列表
-                    if (!activeClients.Contains(clientEndPoint))
+                    if (!activeClients.ContainsKey(clientEndPoint))
                     {
                         activeClients.Add(clientEndPoint);
                         Console.WriteLine($"新客户端: {clientEndPoint}");
@@ -119,7 +74,7 @@ namespace LockStepDemo1
             BaseRequest br = BaseRequest.Parser.ParseFrom(receivedData);
             if (br.RequestType == RequestType.RtLogin) // 登陆请求
             {
-                if(br.RequestData == RequestData.RdUser)
+                if (br.RequestData == RequestData.RdUser)
                 {
                     bool isOk = false;
                     foreach (User user in users)
@@ -148,7 +103,7 @@ namespace LockStepDemo1
                 // 发送消息
                 BroadcastMessage(receivedData, client);
             }
-            
+
         }
 
         private static void BroadcastMessage(byte[] message, IPEndPoint sourceClient)
@@ -174,7 +129,7 @@ namespace LockStepDemo1
                     }
                     catch (ArgumentNullException ex)
                     {
-                        Console.WriteLine(ex.Message );
+                        Console.WriteLine(ex.Message);
                     }
                 }
             }

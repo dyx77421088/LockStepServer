@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemoClient1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D2A8581C-00B9-44EB-A015-29B4AEDD0116}|Utils\\Utils.csproj|c:\\users\\win\\desktop\\unityproject\\server\\lockstepdemoclient1\\utils\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2A8581C-00B9-44EB-A015-29B4AEDD0116}|Utils\\Utils.csproj|solutionrelative:utils\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8E55C241-0C0E-42D9-B024-8FF57DEB3EBD}|LockStepDemoClient1\\LockStepDemoClient1.csproj|C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemoClient1\\lockstepdemoclient1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8E55C241-0C0E-42D9-B024-8FF57DEB3EBD}|LockStepDemoClient1\\LockStepDemoClient1.csproj|solutionrelative:lockstepdemoclient1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D14B5A86-4AE5-4347-BBB9-06B66505ABB4}|Commit\\Commit.csproj|c:\\users\\win\\desktop\\unityproject\\server\\lockstepdemoclient1\\commit\\utils\\protobufutils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D14B5A86-4AE5-4347-BBB9-06B66505ABB4}|Commit\\Commit.csproj|solutionrelative:commit\\utils\\protobufutils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D14B5A86-4AE5-4347-BBB9-06B66505ABB4}|Commit\\Commit.csproj|c:\\users\\win\\desktop\\unityproject\\server\\lockstepdemoclient1\\commit\\proto\\user.proto||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{D14B5A86-4AE5-4347-BBB9-06B66505ABB4}|Commit\\Commit.csproj|solutionrelative:commit\\proto\\user.proto||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D14B5A86-4AE5-4347-BBB9-06B66505ABB4}|Commit\\Commit.csproj|c:\\users\\win\\desktop\\unityproject\\server\\lockstepdemoclient1\\commit\\config\\netconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D14B5A86-4AE5-4347-BBB9-06B66505ABB4}|Commit\\Commit.csproj|solutionrelative:commit\\config\\netconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E55C241-0C0E-42D9-B024-8FF57DEB3EBD}|LockStepDemoClient1\\LockStepDemoClient1.csproj|c:\\users\\win\\desktop\\unityproject\\server\\lockstepdemoclient1\\lockstepdemoclient1\\request\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E55C241-0C0E-42D9-B024-8FF57DEB3EBD}|LockStepDemoClient1\\LockStepDemoClient1.csproj|solutionrelative:lockstepdemoclient1\\request\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +30,72 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemoClient1\\Utils\\Program.cs",
-              "RelativeDocumentMoniker": "Utils\\Program.cs",
-              "ToolTip": "C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemoClient1\\Utils\\Program.cs",
-              "RelativeToolTip": "Utils\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAWAAAA",
+              "DocumentIndex": 1,
+              "Title": "ProtoBufUtils.cs",
+              "DocumentMoniker": "C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemoClient1\\Commit\\Utils\\ProtoBufUtils.cs",
+              "RelativeDocumentMoniker": "Commit\\Utils\\ProtoBufUtils.cs",
+              "ToolTip": "C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemoClient1\\Commit\\Utils\\ProtoBufUtils.cs",
+              "RelativeToolTip": "Commit\\Utils\\ProtoBufUtils.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-15T09:06:23.174Z",
+              "WhenOpened": "2024-08-16T09:44:55.445Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "User.proto",
+              "DocumentMoniker": "C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemoClient1\\Commit\\Proto\\User.proto",
+              "RelativeDocumentMoniker": "Commit\\Proto\\User.proto",
+              "ToolTip": "C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemoClient1\\Commit\\Proto\\User.proto",
+              "RelativeToolTip": "Commit\\Proto\\User.proto",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003853|",
+              "WhenOpened": "2024-08-16T09:41:41.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NetConfig.cs",
+              "DocumentMoniker": "C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemoClient1\\Commit\\Config\\NetConfig.cs",
+              "RelativeDocumentMoniker": "Commit\\Config\\NetConfig.cs",
+              "ToolTip": "C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemoClient1\\Commit\\Config\\NetConfig.cs",
+              "RelativeToolTip": "Commit\\Config\\NetConfig.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwgAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-16T09:17:27.755Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LoginRequest.cs",
+              "DocumentMoniker": "C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemoClient1\\LockStepDemoClient1\\Request\\LoginRequest.cs",
+              "RelativeDocumentMoniker": "LockStepDemoClient1\\Request\\LoginRequest.cs",
+              "ToolTip": "C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemoClient1\\LockStepDemoClient1\\Request\\LoginRequest.cs",
+              "RelativeToolTip": "LockStepDemoClient1\\Request\\LoginRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAABTAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-16T09:13:58.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemoClient1\\LockStepDemoClient1\\Program.cs",
               "RelativeDocumentMoniker": "LockStepDemoClient1\\Program.cs",
               "ToolTip": "C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemoClient1\\LockStepDemoClient1\\Program.cs",
               "RelativeToolTip": "LockStepDemoClient1\\Program.cs",
-              "ViewState": "AQIAAFQAAAAAAAAAAAAowG8AAAA+AAAA",
+              "ViewState": "AQIAADkAAAAAAAAAAAAYwCoAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-05T09:33:32.824Z"
+              "WhenOpened": "2024-08-05T09:33:32.824Z",
+              "EditorCaption": ""
             }
           ]
         }

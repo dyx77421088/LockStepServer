@@ -57,12 +57,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\NetConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proto\output\Cs.cs" />
     <Compile Include="Proto\output\Person.cs" />
+    <Compile Include="Proto\output\Request.cs" />
+    <Compile Include="Proto\output\User.cs" />
+    <Compile Include="Utils\ProtoBufUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Proto\Cs.proto" />
     <None Include="Proto\Person.proto" />
+    <None Include="Proto\Request.proto" />
+    <None Include="Proto\User.proto" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -64,6 +64,8 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\Entity\ClientInfo.cs" />
+    <Compile Include="Server\UdpServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
