@@ -22,16 +22,19 @@ public static partial class RequestReflection {
   static RequestReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Cg1SZXF1ZXN0LnByb3RvGgpVc2VyLnByb3RvIn4KC0Jhc2VSZXF1ZXN0EgoK",
-          "AmlkGAEgASgFEiEKC3JlcXVlc3RUeXBlGAIgASgOMgwuUmVxdWVzdFR5cGUS",
-          "IQoLcmVxdWVzdERhdGEYAyABKA4yDC5SZXF1ZXN0RGF0YRIVCgR1c2VyGAQg",
-          "ASgLMgUuVXNlckgAQgYKBGRhdGEqOwoLUmVxdWVzdFR5cGUSDgoKUlRfVU5L",
-          "Tk9XThAAEgwKCFJUX0xPR0lOEAESDgoKUlRfTUVTU0FHRRACKioKC1JlcXVl",
-          "c3REYXRhEg4KClJEX1VOS05PV04QABILCgdSRF9VU0VSEAFiBnByb3RvMw=="));
+          "Cg1SZXF1ZXN0LnByb3RvGgpVc2VyLnByb3RvGglNc2cucHJvdG8aDFN0YXR1",
+          "cy5wcm90byKuAQoLQmFzZVJlcXVlc3QSCgoCaWQYASABKAUSIQoLcmVxdWVz",
+          "dFR5cGUYAiABKA4yDC5SZXF1ZXN0VHlwZRIhCgtyZXF1ZXN0RGF0YRgDIAEo",
+          "DjIMLlJlcXVlc3REYXRhEhUKBHVzZXIYBCABKAsyBS5Vc2VySAASEwoDbXNn",
+          "GAUgASgLMgQuTXNnSAASGQoGc3RhdHVzGAYgASgLMgcuU3RhdHVzSABCBgoE",
+          "ZGF0YSo7CgtSZXF1ZXN0VHlwZRIOCgpSVF9VTktOT1dOEAASDAoIUlRfTE9H",
+          "SU4QARIOCgpSVF9NRVNTQUdFEAIqSQoLUmVxdWVzdERhdGESDgoKUkRfVU5L",
+          "Tk9XThAAEgsKB1JEX1VTRVIQARINCglSRF9TVEFUVVMQAhIOCgpSRF9NRVNT",
+          "QUdFEANiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { global::UserReflection.Descriptor, },
+        new pbr::FileDescriptor[] { global::UserReflection.Descriptor, global::MsgReflection.Descriptor, global::StatusReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::RequestType), typeof(global::RequestData), }, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::BaseRequest), global::BaseRequest.Parser, new[]{ "Id", "RequestType", "RequestData", "User" }, new[]{ "Data" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::BaseRequest), global::BaseRequest.Parser, new[]{ "Id", "RequestType", "RequestData", "User", "Msg", "Status" }, new[]{ "Data" }, null, null, null)
         }));
   }
   #endregion
@@ -68,6 +71,14 @@ public enum RequestData {
   /// 类型为User
   /// </summary>
   [pbr::OriginalName("RD_USER")] RdUser = 1,
+  /// <summary>
+  /// 类型为status
+  /// </summary>
+  [pbr::OriginalName("RD_STATUS")] RdStatus = 2,
+  /// <summary>
+  /// 消息
+  /// </summary>
+  [pbr::OriginalName("RD_MESSAGE")] RdMessage = 3,
 }
 
 #endregion
@@ -117,6 +128,12 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
     switch (other.DataCase) {
       case DataOneofCase.User:
         User = other.User.Clone();
+        break;
+      case DataOneofCase.Msg:
+        Msg = other.Msg.Clone();
+        break;
+      case DataOneofCase.Status:
+        Status = other.Status.Clone();
         break;
     }
 
@@ -180,11 +197,37 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
     }
   }
 
+  /// <summary>Field number for the "msg" field.</summary>
+  public const int MsgFieldNumber = 5;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::Msg Msg {
+    get { return dataCase_ == DataOneofCase.Msg ? (global::Msg) data_ : null; }
+    set {
+      data_ = value;
+      dataCase_ = value == null ? DataOneofCase.None : DataOneofCase.Msg;
+    }
+  }
+
+  /// <summary>Field number for the "status" field.</summary>
+  public const int StatusFieldNumber = 6;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::Status Status {
+    get { return dataCase_ == DataOneofCase.Status ? (global::Status) data_ : null; }
+    set {
+      data_ = value;
+      dataCase_ = value == null ? DataOneofCase.None : DataOneofCase.Status;
+    }
+  }
+
   private object data_;
   /// <summary>Enum of possible cases for the "data" oneof.</summary>
   public enum DataOneofCase {
     None = 0,
     User = 4,
+    Msg = 5,
+    Status = 6,
   }
   private DataOneofCase dataCase_ = DataOneofCase.None;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -219,6 +262,8 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
     if (RequestType != other.RequestType) return false;
     if (RequestData != other.RequestData) return false;
     if (!object.Equals(User, other.User)) return false;
+    if (!object.Equals(Msg, other.Msg)) return false;
+    if (!object.Equals(Status, other.Status)) return false;
     if (DataCase != other.DataCase) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -231,6 +276,8 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
     if (RequestType != global::RequestType.RtUnknown) hash ^= RequestType.GetHashCode();
     if (RequestData != global::RequestData.RdUnknown) hash ^= RequestData.GetHashCode();
     if (dataCase_ == DataOneofCase.User) hash ^= User.GetHashCode();
+    if (dataCase_ == DataOneofCase.Msg) hash ^= Msg.GetHashCode();
+    if (dataCase_ == DataOneofCase.Status) hash ^= Status.GetHashCode();
     hash ^= (int) dataCase_;
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -266,6 +313,14 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
       output.WriteRawTag(34);
       output.WriteMessage(User);
     }
+    if (dataCase_ == DataOneofCase.Msg) {
+      output.WriteRawTag(42);
+      output.WriteMessage(Msg);
+    }
+    if (dataCase_ == DataOneofCase.Status) {
+      output.WriteRawTag(50);
+      output.WriteMessage(Status);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -292,6 +347,14 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
       output.WriteRawTag(34);
       output.WriteMessage(User);
     }
+    if (dataCase_ == DataOneofCase.Msg) {
+      output.WriteRawTag(42);
+      output.WriteMessage(Msg);
+    }
+    if (dataCase_ == DataOneofCase.Status) {
+      output.WriteRawTag(50);
+      output.WriteMessage(Status);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -313,6 +376,12 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
     }
     if (dataCase_ == DataOneofCase.User) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(User);
+    }
+    if (dataCase_ == DataOneofCase.Msg) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Msg);
+    }
+    if (dataCase_ == DataOneofCase.Status) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Status);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -341,6 +410,18 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
           User = new global::User();
         }
         User.MergeFrom(other.User);
+        break;
+      case DataOneofCase.Msg:
+        if (Msg == null) {
+          Msg = new global::Msg();
+        }
+        Msg.MergeFrom(other.Msg);
+        break;
+      case DataOneofCase.Status:
+        if (Status == null) {
+          Status = new global::Status();
+        }
+        Status.MergeFrom(other.Status);
         break;
     }
 
@@ -384,6 +465,24 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
           User = subBuilder;
           break;
         }
+        case 42: {
+          global::Msg subBuilder = new global::Msg();
+          if (dataCase_ == DataOneofCase.Msg) {
+            subBuilder.MergeFrom(Msg);
+          }
+          input.ReadMessage(subBuilder);
+          Msg = subBuilder;
+          break;
+        }
+        case 50: {
+          global::Status subBuilder = new global::Status();
+          if (dataCase_ == DataOneofCase.Status) {
+            subBuilder.MergeFrom(Status);
+          }
+          input.ReadMessage(subBuilder);
+          Status = subBuilder;
+          break;
+        }
       }
     }
   #endif
@@ -422,6 +521,24 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
           }
           input.ReadMessage(subBuilder);
           User = subBuilder;
+          break;
+        }
+        case 42: {
+          global::Msg subBuilder = new global::Msg();
+          if (dataCase_ == DataOneofCase.Msg) {
+            subBuilder.MergeFrom(Msg);
+          }
+          input.ReadMessage(subBuilder);
+          Msg = subBuilder;
+          break;
+        }
+        case 50: {
+          global::Status subBuilder = new global::Status();
+          if (dataCase_ == DataOneofCase.Status) {
+            subBuilder.MergeFrom(Status);
+          }
+          input.ReadMessage(subBuilder);
+          Status = subBuilder;
           break;
         }
       }

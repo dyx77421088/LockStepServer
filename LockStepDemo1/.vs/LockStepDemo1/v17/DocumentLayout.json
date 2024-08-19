@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{C5BFF2A5-3125-4656-BA67-A952E9D98384}|LockStepDemo1\\LockStepDemo1.csproj|solutionrelative:lockstepdemo1\\server\\udpserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C5BFF2A5-3125-4656-BA67-A952E9D98384}|LockStepDemo1\\LockStepDemo1.csproj|c:\\users\\win\\desktop\\unityproject\\server\\lockstepdemo1\\lockstepdemo1\\server\\entity\\clientinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C5BFF2A5-3125-4656-BA67-A952E9D98384}|LockStepDemo1\\LockStepDemo1.csproj|solutionrelative:lockstepdemo1\\server\\entity\\clientinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C5BFF2A5-3125-4656-BA67-A952E9D98384}|LockStepDemo1\\LockStepDemo1.csproj|C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemo1\\lockstepdemo1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5BFF2A5-3125-4656-BA67-A952E9D98384}|LockStepDemo1\\LockStepDemo1.csproj|solutionrelative:lockstepdemo1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C5BFF2A5-3125-4656-BA67-A952E9D98384}|LockStepDemo1\\LockStepDemo1.csproj|c:\\users\\win\\desktop\\unityproject\\server\\lockstepdemo1\\lockstepdemo1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C5BFF2A5-3125-4656-BA67-A952E9D98384}|LockStepDemo1\\LockStepDemo1.csproj|solutionrelative:lockstepdemo1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C5BFF2A5-3125-4656-BA67-A952E9D98384}|LockStepDemo1\\LockStepDemo1.csproj|C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemo1\\lockstepdemo1\\server\\entity\\clientinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5BFF2A5-3125-4656-BA67-A952E9D98384}|LockStepDemo1\\LockStepDemo1.csproj|solutionrelative:lockstepdemo1\\server\\entity\\clientinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +26,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ClientInfo.cs",
               "DocumentMoniker": "C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemo1\\LockStepDemo1\\Server\\Entity\\ClientInfo.cs",
               "RelativeDocumentMoniker": "LockStepDemo1\\Server\\Entity\\ClientInfo.cs",
@@ -34,8 +34,7 @@
               "RelativeToolTip": "LockStepDemo1\\Server\\Entity\\ClientInfo.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAADwvxIAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T09:33:25.553Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-16T09:33:25.553Z"
             },
             {
               "$type": "Document",
@@ -45,20 +44,20 @@
               "RelativeDocumentMoniker": "LockStepDemo1\\Server\\UdpServer.cs",
               "ToolTip": "C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemo1\\LockStepDemo1\\Server\\UdpServer.cs",
               "RelativeToolTip": "LockStepDemo1\\Server\\UdpServer.cs",
-              "ViewState": "AQIAAB0AAAAAAAAAAAAQwC8AAAAsAAAA",
+              "ViewState": "AQIAAGEAAAAAAAAAAAAIwG4AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-16T09:26:07.737Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemo1\\LockStepDemo1\\Program.cs",
               "RelativeDocumentMoniker": "LockStepDemo1\\Program.cs",
               "ToolTip": "C:\\Users\\WIN\\Desktop\\unityProject\\Server\\LockStepDemo1\\LockStepDemo1\\Program.cs",
               "RelativeToolTip": "LockStepDemo1\\Program.cs",
-              "ViewState": "AQIAAKAAAAAAAAAAAAAAALQAAAAJAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA0AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-05T09:19:10.298Z",
               "EditorCaption": ""

@@ -1,4 +1,5 @@
 ﻿
+using Commit.Utils;
 using Google.Protobuf;
 using System;
 using System.Collections.Generic;
@@ -17,84 +18,35 @@ namespace LockStepDemoClient1
         private static IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port); // 请替换为实际的服务器 IP
         private static List<User> users = new List<User>();
 
-        private static User Login()
+        // 登陆！
+        private static void Login()
         {
-            //Init();
             User user = new User();
-            while (user.Prot == 0)
-            {
-                Console.WriteLine("请登录:\nuserName:");
-                string userName = Console.ReadLine();
-                Console.WriteLine("password:");
-                string password = Console.ReadLine();
-                foreach (var item in users)
-                {
-                    if (item.Name == userName && item.Password == password)
-                    {
-                        user = item;
-                        break;
-                    }
-                }
-            }
-            return user;
+            Console.WriteLine("请登录:\nuserName:");
+            string userName = Console.ReadLine();
+            Console.WriteLine("password:");
+            string password = Console.ReadLine();
+            user.Name = userName;
+            user.Password = password;
+            byte[] message = ProtoBufUtils.DeSerializeBaseRequest(user, RequestType.RtLogin, RequestData.RdUser);
+            clientUser = user;
+            udpClient.Send(message, message.Length, serverEndPoint);
         }
-        static void Main2()
+        static void Main()
         {
             
-            User user = Login();
-            //udpClient.Client.Bind(new IPEndPoint(IPAddress.Any, 0)); // 也可以指定具体的端口
-            udpClient.Client.Bind(new IPEndPoint(IPAddress.Any, user.Prot)); // 指定具体的端口
+            
+            udpClient.Client.Bind(new IPEndPoint(IPAddress.Any, 0)); // 0：自己分配端口号 也可以指定具体的端口
 
-            byte[] data2 = Encoding.UTF8.GetBytes($"username:{user.Name},password:{user.Password}");
-            udpClient.Send(data2, data2.Length, serverEndPoint);
-
+            Login(); // 登陆
             Thread receiveThread = new Thread(ReceiveMessages);
             receiveThread.Start();
 
             Console.WriteLine("💬 UDP 聊天客户端已启动，输入消息发送（输入 'exit' 退出）:");
 
-            while (true)
-            {
-                string message = Console.ReadLine();
-                if (message.ToLower() == "exit") break;
 
-                byte[] data = Encoding.UTF8.GetBytes(message);
-                udpClient.Send(data, data.Length, serverEndPoint);
-                Console.WriteLine($"发送的消息: {message}");
-            }
-
-            // 清理资源
-            udpClient.Close();
         }
-
-        static void Main()
-        {
-            BaseRequest request = new BaseRequest()
-            {
-                RequestType = RequestType.RtLogin,
-                RequestData = RequestData.RdUser,
-                User = new User
-                {
-                    Name = "Alice",
-                    Id = 123,
-                    Password = "asfsa",
-                }
-            };
-            // 序列化为二进制数据
-            byte[] data;
-            data = request.ToByteArray();
-            // 将数据写入文件（可选）
-            //File.WriteAllBytes("person.bin", data);
-
-            Console.WriteLine(data.Length);
-            BaseRequest newPerson = BaseRequest.Parser.ParseFrom(data);
-            // 输出结果
-            Console.WriteLine($"Name: {newPerson.User.Name}, ID: {newPerson.User.Id}");
-            Console.WriteLine("password: " + string.Join(", ", newPerson.User.Password));
-            Console.WriteLine("RequestType: " + string.Join(", ", newPerson.RequestType));
-            Console.WriteLine("RequestData: " + string.Join(", ", newPerson.RequestData));
-        }
-
+        static User clientUser;
         private static void ReceiveMessages()
         {
             IPEndPoint listenEndPoint = new IPEndPoint(IPAddress.Any, port);
@@ -104,8 +56,54 @@ namespace LockStepDemoClient1
                 try
                 {
                     byte[] receivedData = udpClient.Receive(ref listenEndPoint);
-                    string receivedMessage = Encoding.UTF8.GetString(receivedData);
-                    Console.WriteLine($"📥 收到消息: {receivedMessage}");
+                    BaseRequest baseRequest = ProtoBufUtils.SerializeBaseRequest(receivedData);
+                    if (baseRequest.RequestType == RequestType.RtLogin )
+                    {
+                        if (baseRequest.RequestData == RequestData.RdStatus)
+                        {
+                            if (baseRequest.Status.St == StatusType.StError)
+                            {
+                                Console.WriteLine(baseRequest.Status.Msg);
+                                Login(); // 登陆失败，需要再次登陆
+                            }
+                            else if (baseRequest.Status.St == StatusType.StSuccess)
+                            {
+                                Console.WriteLine(baseRequest.Status.Msg);
+                                // 循环发送消息
+                                while (true)
+                                {
+                                    string str = Console.ReadLine();
+                                    if (str.ToLower() == "exit") break;
+
+                                    BaseRequest br = new BaseRequest()
+                                    {
+                                        RequestType = RequestType.RtMessage,
+                                        RequestData = RequestData.RdMessage,
+                                        Msg = new Msg()
+                                        {
+                                            Msg_ = str
+                                        }
+                                    };
+                                    byte[] msg = ProtoBufUtils.DeSerializeBaseRequest(br);
+                                    udpClient.Send(msg, msg.Length, serverEndPoint);
+                                    //Console.WriteLine($"发送的消息: {str}");
+                                }
+
+                                //清理资源
+                                udpClient.Close();
+                            }
+                        }
+
+                    }
+                    else if (baseRequest.RequestType == RequestType.RtMessage)
+                    {
+                        if (baseRequest.RequestData == RequestData.RdMessage)
+                        {
+                            Console.WriteLine("\n收到一条消息:");
+                            Console.WriteLine("发送者:" +  baseRequest.Msg.User.Name);
+                            Console.WriteLine("内容:" +  baseRequest.Msg.Msg_);
+                        }
+                    }
                 }
                 catch (ObjectDisposedException)
                 {

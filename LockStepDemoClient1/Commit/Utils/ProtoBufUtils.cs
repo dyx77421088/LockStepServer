@@ -11,9 +11,20 @@ namespace Commit.Utils
         {
             return BaseRequest.Parser.ParseFrom(data);
         }
-        public static byte[] DeSerializeBaseRequest(BaseRequest baseReqeust)
+        public static byte[] DeSerializeBaseRequest(BaseRequest baseRequest)
         {
-            return baseReqeust.ToByteArray();
+            return baseRequest.ToByteArray();
+        }
+
+        public static byte[] DeSerializeBaseRequest(User user, RequestType rt, RequestData rd)
+        {
+            BaseRequest baseRequest = new BaseRequest()
+            {
+                RequestType = rt,
+                RequestData = rd,
+                User = user,
+            };
+            return baseRequest.ToByteArray();
         }
     }
 }

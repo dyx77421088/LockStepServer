@@ -1,5 +1,7 @@
 syntax = "proto3";
 import "User.proto"; // 导入外部的proto文件
+import "Msg.proto"; // 导入外部的proto文件
+import "Status.proto"; // 导入外部的proto文件
 // 请求的类型
 enum RequestType {
     RT_UNKNOWN = 0; // 未知请求
@@ -10,6 +12,8 @@ enum RequestType {
 enum RequestData {
     RD_UNKNOWN = 0; // 未知类型
     RD_USER = 1; // 类型为User
+    RD_STATUS = 2; // 类型为status
+    RD_MESSAGE = 3; // 消息
 }
 // 基础请求类型
 message BaseRequest {
@@ -18,5 +22,7 @@ message BaseRequest {
     RequestData requestData = 3;
     oneof data { // oneof表示这里面的占用相同的地址
         User user = 4;
+        Msg msg = 5;
+        Status status = 6;
     }
 }

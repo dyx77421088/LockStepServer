@@ -4,5 +4,4 @@ message User {
     string name = 1;
     int32 id = 2;
     string password = 3;
-    int32 prot = 4;
 }
