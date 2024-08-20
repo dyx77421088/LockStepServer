@@ -22,12 +22,12 @@ public static partial class MsgReflection {
   static MsgReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "CglNc2cucHJvdG8aClVzZXIucHJvdG8iMwoDTXNnEgoKAmlkGAEgASgFEhMK",
-          "BHVzZXIYAiABKAsyBS5Vc2VyEgsKA21zZxgDIAEoCWIGcHJvdG8z"));
+          "CglNc2cucHJvdG8iQAoDTXNnEgoKAmlkGAEgASgFEg4KBnVzZXJJZBgCIAEo",
+          "BRIQCgh1c2VyTmFtZRgDIAEoCRILCgNtc2cYBCABKAliBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { global::UserReflection.Descriptor, },
+        new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::Msg), global::Msg.Parser, new[]{ "Id", "User", "Msg_" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::Msg), global::Msg.Parser, new[]{ "Id", "UserId", "UserName", "Msg_" }, null, null, null, null)
         }));
   }
   #endregion
@@ -70,7 +70,8 @@ public sealed partial class Msg : pb::IMessage<Msg>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public Msg(Msg other) : this() {
     id_ = other.id_;
-    user_ = other.user_ != null ? other.user_.Clone() : null;
+    userId_ = other.userId_;
+    userName_ = other.userName_;
     msg_ = other.msg_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
@@ -93,20 +94,32 @@ public sealed partial class Msg : pb::IMessage<Msg>
     }
   }
 
-  /// <summary>Field number for the "user" field.</summary>
-  public const int UserFieldNumber = 2;
-  private global::User user_;
+  /// <summary>Field number for the "userId" field.</summary>
+  public const int UserIdFieldNumber = 2;
+  private int userId_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public global::User User {
-    get { return user_; }
+  public int UserId {
+    get { return userId_; }
     set {
-      user_ = value;
+      userId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "userName" field.</summary>
+  public const int UserNameFieldNumber = 3;
+  private string userName_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string UserName {
+    get { return userName_; }
+    set {
+      userName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
     }
   }
 
   /// <summary>Field number for the "msg" field.</summary>
-  public const int Msg_FieldNumber = 3;
+  public const int Msg_FieldNumber = 4;
   private string msg_ = "";
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -133,7 +146,8 @@ public sealed partial class Msg : pb::IMessage<Msg>
       return true;
     }
     if (Id != other.Id) return false;
-    if (!object.Equals(User, other.User)) return false;
+    if (UserId != other.UserId) return false;
+    if (UserName != other.UserName) return false;
     if (Msg_ != other.Msg_) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -143,7 +157,8 @@ public sealed partial class Msg : pb::IMessage<Msg>
   public override int GetHashCode() {
     int hash = 1;
     if (Id != 0) hash ^= Id.GetHashCode();
-    if (user_ != null) hash ^= User.GetHashCode();
+    if (UserId != 0) hash ^= UserId.GetHashCode();
+    if (UserName.Length != 0) hash ^= UserName.GetHashCode();
     if (Msg_.Length != 0) hash ^= Msg_.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -167,12 +182,16 @@ public sealed partial class Msg : pb::IMessage<Msg>
       output.WriteRawTag(8);
       output.WriteInt32(Id);
     }
-    if (user_ != null) {
-      output.WriteRawTag(18);
-      output.WriteMessage(User);
+    if (UserId != 0) {
+      output.WriteRawTag(16);
+      output.WriteInt32(UserId);
+    }
+    if (UserName.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(UserName);
     }
     if (Msg_.Length != 0) {
-      output.WriteRawTag(26);
+      output.WriteRawTag(34);
       output.WriteString(Msg_);
     }
     if (_unknownFields != null) {
@@ -189,12 +208,16 @@ public sealed partial class Msg : pb::IMessage<Msg>
       output.WriteRawTag(8);
       output.WriteInt32(Id);
     }
-    if (user_ != null) {
-      output.WriteRawTag(18);
-      output.WriteMessage(User);
+    if (UserId != 0) {
+      output.WriteRawTag(16);
+      output.WriteInt32(UserId);
+    }
+    if (UserName.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(UserName);
     }
     if (Msg_.Length != 0) {
-      output.WriteRawTag(26);
+      output.WriteRawTag(34);
       output.WriteString(Msg_);
     }
     if (_unknownFields != null) {
@@ -210,8 +233,11 @@ public sealed partial class Msg : pb::IMessage<Msg>
     if (Id != 0) {
       size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
     }
-    if (user_ != null) {
-      size += 1 + pb::CodedOutputStream.ComputeMessageSize(User);
+    if (UserId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(UserId);
+    }
+    if (UserName.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(UserName);
     }
     if (Msg_.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Msg_);
@@ -231,11 +257,11 @@ public sealed partial class Msg : pb::IMessage<Msg>
     if (other.Id != 0) {
       Id = other.Id;
     }
-    if (other.user_ != null) {
-      if (user_ == null) {
-        User = new global::User();
-      }
-      User.MergeFrom(other.User);
+    if (other.UserId != 0) {
+      UserId = other.UserId;
+    }
+    if (other.UserName.Length != 0) {
+      UserName = other.UserName;
     }
     if (other.Msg_.Length != 0) {
       Msg_ = other.Msg_;
@@ -263,14 +289,15 @@ public sealed partial class Msg : pb::IMessage<Msg>
           Id = input.ReadInt32();
           break;
         }
-        case 18: {
-          if (user_ == null) {
-            User = new global::User();
-          }
-          input.ReadMessage(User);
+        case 16: {
+          UserId = input.ReadInt32();
           break;
         }
         case 26: {
+          UserName = input.ReadString();
+          break;
+        }
+        case 34: {
           Msg_ = input.ReadString();
           break;
         }
@@ -297,14 +324,15 @@ public sealed partial class Msg : pb::IMessage<Msg>
           Id = input.ReadInt32();
           break;
         }
-        case 18: {
-          if (user_ == null) {
-            User = new global::User();
-          }
-          input.ReadMessage(User);
+        case 16: {
+          UserId = input.ReadInt32();
           break;
         }
         case 26: {
+          UserName = input.ReadString();
+          break;
+        }
+        case 34: {
           Msg_ = input.ReadString();
           break;
         }

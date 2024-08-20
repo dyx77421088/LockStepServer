@@ -23,18 +23,18 @@ public static partial class RequestReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Cg1SZXF1ZXN0LnByb3RvGgpVc2VyLnByb3RvGglNc2cucHJvdG8aDFN0YXR1",
-          "cy5wcm90byKuAQoLQmFzZVJlcXVlc3QSCgoCaWQYASABKAUSIQoLcmVxdWVz",
-          "dFR5cGUYAiABKA4yDC5SZXF1ZXN0VHlwZRIhCgtyZXF1ZXN0RGF0YRgDIAEo",
-          "DjIMLlJlcXVlc3REYXRhEhUKBHVzZXIYBCABKAsyBS5Vc2VySAASEwoDbXNn",
-          "GAUgASgLMgQuTXNnSAASGQoGc3RhdHVzGAYgASgLMgcuU3RhdHVzSABCBgoE",
-          "ZGF0YSo7CgtSZXF1ZXN0VHlwZRIOCgpSVF9VTktOT1dOEAASDAoIUlRfTE9H",
-          "SU4QARIOCgpSVF9NRVNTQUdFEAIqSQoLUmVxdWVzdERhdGESDgoKUkRfVU5L",
-          "Tk9XThAAEgsKB1JEX1VTRVIQARINCglSRF9TVEFUVVMQAhIOCgpSRF9NRVNT",
-          "QUdFEANiBnByb3RvMw=="));
+          "cy5wcm90byKyAQoLQmFzZVJlcXVlc3QSDgoGdXNlcklkGAEgASgFEiEKC3Jl",
+          "cXVlc3RUeXBlGAIgASgOMgwuUmVxdWVzdFR5cGUSIQoLcmVxdWVzdERhdGEY",
+          "AyABKA4yDC5SZXF1ZXN0RGF0YRIVCgR1c2VyGAQgASgLMgUuVXNlckgAEhMK",
+          "A21zZxgFIAEoCzIELk1zZ0gAEhkKBnN0YXR1cxgGIAEoCzIHLlN0YXR1c0gA",
+          "QgYKBGRhdGEqOwoLUmVxdWVzdFR5cGUSDgoKUlRfVU5LTk9XThAAEgwKCFJU",
+          "X0xPR0lOEAESDgoKUlRfTUVTU0FHRRACKkkKC1JlcXVlc3REYXRhEg4KClJE",
+          "X1VOS05PV04QABILCgdSRF9VU0VSEAESDQoJUkRfU1RBVFVTEAISDgoKUkRf",
+          "TUVTU0FHRRADYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::UserReflection.Descriptor, global::MsgReflection.Descriptor, global::StatusReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::RequestType), typeof(global::RequestData), }, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::BaseRequest), global::BaseRequest.Parser, new[]{ "Id", "RequestType", "RequestData", "User", "Msg", "Status" }, new[]{ "Data" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::BaseRequest), global::BaseRequest.Parser, new[]{ "UserId", "RequestType", "RequestData", "User", "Msg", "Status" }, new[]{ "Data" }, null, null, null)
         }));
   }
   #endregion
@@ -122,7 +122,7 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public BaseRequest(BaseRequest other) : this() {
-    id_ = other.id_;
+    userId_ = other.userId_;
     requestType_ = other.requestType_;
     requestData_ = other.requestData_;
     switch (other.DataCase) {
@@ -146,18 +146,18 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
     return new BaseRequest(this);
   }
 
-  /// <summary>Field number for the "id" field.</summary>
-  public const int IdFieldNumber = 1;
-  private int id_;
+  /// <summary>Field number for the "userId" field.</summary>
+  public const int UserIdFieldNumber = 1;
+  private int userId_;
   /// <summary>
-  /// 是谁发送的请求
+  /// 是谁发送的请求(也就是userId)
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int Id {
-    get { return id_; }
+  public int UserId {
+    get { return userId_; }
     set {
-      id_ = value;
+      userId_ = value;
     }
   }
 
@@ -258,7 +258,7 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
     if (ReferenceEquals(other, this)) {
       return true;
     }
-    if (Id != other.Id) return false;
+    if (UserId != other.UserId) return false;
     if (RequestType != other.RequestType) return false;
     if (RequestData != other.RequestData) return false;
     if (!object.Equals(User, other.User)) return false;
@@ -272,7 +272,7 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
-    if (Id != 0) hash ^= Id.GetHashCode();
+    if (UserId != 0) hash ^= UserId.GetHashCode();
     if (RequestType != global::RequestType.RtUnknown) hash ^= RequestType.GetHashCode();
     if (RequestData != global::RequestData.RdUnknown) hash ^= RequestData.GetHashCode();
     if (dataCase_ == DataOneofCase.User) hash ^= User.GetHashCode();
@@ -297,9 +297,9 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
   #else
-    if (Id != 0) {
+    if (UserId != 0) {
       output.WriteRawTag(8);
-      output.WriteInt32(Id);
+      output.WriteInt32(UserId);
     }
     if (RequestType != global::RequestType.RtUnknown) {
       output.WriteRawTag(16);
@@ -331,9 +331,9 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (Id != 0) {
+    if (UserId != 0) {
       output.WriteRawTag(8);
-      output.WriteInt32(Id);
+      output.WriteInt32(UserId);
     }
     if (RequestType != global::RequestType.RtUnknown) {
       output.WriteRawTag(16);
@@ -365,8 +365,8 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
-    if (Id != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+    if (UserId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(UserId);
     }
     if (RequestType != global::RequestType.RtUnknown) {
       size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RequestType);
@@ -395,8 +395,8 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
     if (other == null) {
       return;
     }
-    if (other.Id != 0) {
-      Id = other.Id;
+    if (other.UserId != 0) {
+      UserId = other.UserId;
     }
     if (other.RequestType != global::RequestType.RtUnknown) {
       RequestType = other.RequestType;
@@ -445,7 +445,7 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
         case 8: {
-          Id = input.ReadInt32();
+          UserId = input.ReadInt32();
           break;
         }
         case 16: {
@@ -503,7 +503,7 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
         case 8: {
-          Id = input.ReadInt32();
+          UserId = input.ReadInt32();
           break;
         }
         case 16: {

@@ -1,8 +1,8 @@
 syntax = "proto3";
-import "User.proto"; // 导入外部的proto文件
 
 message Msg {
     int32 id = 1;
-    User user = 2;
-    string msg = 3;
+    int32 userId = 2;
+    string userName = 3;
+    string msg = 4;
 }

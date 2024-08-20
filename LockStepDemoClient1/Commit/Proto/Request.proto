@@ -17,7 +17,7 @@ enum RequestData {
 }
 // 基础请求类型
 message BaseRequest {
-    int32 id = 1; // 是谁发送的请求
+    int32 userId = 1; // 是谁发送的请求(也就是userId)
     RequestType requestType = 2;
     RequestData requestData = 3;
     oneof data { // oneof表示这里面的占用相同的地址

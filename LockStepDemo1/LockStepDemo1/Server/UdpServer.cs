@@ -109,12 +109,11 @@ namespace LockStepDemo1.Server
             Console.WriteLine("我在这里是发");
             foreach (int id in activeClients.Keys)
             {
-                if (id != msg.User.Id) // 这个用户发送消息给其它的所有的用户
+                if (id != request.UserId) // 这个用户发送消息给其它的所有的用户
                 {
                     try
                     {
-                        Console.WriteLine($"消息发送给 ");
-                        Console.WriteLine(msg.User.Name);
+                        Console.WriteLine($"消息发送给 {activeClients[id].User.Name}");
                         udpServer.Send(message, message.Length, activeClients[id].Point);
                     }
                     catch (SocketException s)
@@ -158,6 +157,7 @@ namespace LockStepDemo1.Server
                 if (u.Name == user.Name && u.Password == user.Password)
                 {
                     isOk = true;
+                    user = u; // 查询到的用户
                     break;
                 }
             }
@@ -165,6 +165,7 @@ namespace LockStepDemo1.Server
             {
                 baseRequest.Status.St = StatusType.StSuccess;
                 baseRequest.Status.Msg = "登陆成功！！";
+                baseRequest.UserId = user.Id;
                 // 更新活动客户端列表
                 if (!activeClients.ContainsKey(user.Id))
                 {

@@ -46,7 +46,7 @@ namespace LockStepDemoClient1
 
 
         }
-        static User clientUser;
+        private static User clientUser; // 这个在登陆之后赋值，后续需要传
         private static void ReceiveMessages()
         {
             IPEndPoint listenEndPoint = new IPEndPoint(IPAddress.Any, port);
@@ -69,28 +69,9 @@ namespace LockStepDemoClient1
                             else if (baseRequest.Status.St == StatusType.StSuccess)
                             {
                                 Console.WriteLine(baseRequest.Status.Msg);
-                                // 循环发送消息
-                                while (true)
-                                {
-                                    string str = Console.ReadLine();
-                                    if (str.ToLower() == "exit") break;
-
-                                    BaseRequest br = new BaseRequest()
-                                    {
-                                        RequestType = RequestType.RtMessage,
-                                        RequestData = RequestData.RdMessage,
-                                        Msg = new Msg()
-                                        {
-                                            Msg_ = str
-                                        }
-                                    };
-                                    byte[] msg = ProtoBufUtils.DeSerializeBaseRequest(br);
-                                    udpClient.Send(msg, msg.Length, serverEndPoint);
-                                    //Console.WriteLine($"发送的消息: {str}");
-                                }
-
-                                //清理资源
-                                udpClient.Close();
+                                clientUser.Id = baseRequest.UserId; // 登陆成功之后获得用户id
+                                Thread receiveThread = new Thread(SendMessage);
+                                receiveThread.Start();
                             }
                         }
 
@@ -100,7 +81,7 @@ namespace LockStepDemoClient1
                         if (baseRequest.RequestData == RequestData.RdMessage)
                         {
                             Console.WriteLine("\n收到一条消息:");
-                            Console.WriteLine("发送者:" +  baseRequest.Msg.User.Name);
+                            Console.WriteLine("发送者:" +  baseRequest.Msg.UserName);
                             Console.WriteLine("内容:" +  baseRequest.Msg.Msg_);
                         }
                     }
@@ -115,6 +96,38 @@ namespace LockStepDemoClient1
                     Console.WriteLine($"异常: {ex.Message}");
                 }
             }
+        }
+
+        /// <summary>
+        /// 发送消息的线程
+        /// </summary>
+        private static void SendMessage()
+        {
+            // 循环发送消息
+            while (true)
+            {
+                string str = Console.ReadLine();
+                if (str.ToLower() == "exit") break;
+
+                BaseRequest br = new BaseRequest()
+                {
+                    UserId = clientUser.Id,
+                    RequestType = RequestType.RtMessage,
+                    RequestData = RequestData.RdMessage,
+                    Msg = new Msg()
+                    {
+                        UserId = clientUser.Id,
+                        UserName = clientUser.Name,
+                        Msg_ = str,
+                    }
+                };
+                byte[] msg = ProtoBufUtils.DeSerializeBaseRequest(br);
+                udpClient.Send(msg, msg.Length, serverEndPoint);
+                //Console.WriteLine($"发送的消息: {str}");
+            }
+
+            //清理资源
+            udpClient.Close();
         }
     }
 }
