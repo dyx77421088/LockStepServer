@@ -1,7 +1,0 @@
-C:\Users\WIN\Desktop\unityProject\Server\LockStepDemoClient1\Utils\bin\Debug\Utils.exe.config
-C:\Users\WIN\Desktop\unityProject\Server\LockStepDemoClient1\Utils\bin\Debug\Utils.exe
-C:\Users\WIN\Desktop\unityProject\Server\LockStepDemoClient1\Utils\bin\Debug\Utils.pdb
-C:\Users\WIN\Desktop\unityProject\Server\LockStepDemoClient1\Utils\obj\Debug\Utils.csproj.AssemblyReference.cache
-C:\Users\WIN\Desktop\unityProject\Server\LockStepDemoClient1\Utils\obj\Debug\Utils.csproj.CoreCompileInputs.cache
-C:\Users\WIN\Desktop\unityProject\Server\LockStepDemoClient1\Utils\obj\Debug\Utils.exe
-C:\Users\WIN\Desktop\unityProject\Server\LockStepDemoClient1\Utils\obj\Debug\Utils.pdb

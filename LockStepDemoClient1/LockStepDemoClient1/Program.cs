@@ -1,4 +1,5 @@
 ﻿
+using Commit.Config;
 using Commit.Utils;
 using Google.Protobuf;
 using System;
@@ -15,7 +16,7 @@ namespace LockStepDemoClient1
         private const int port = 12345;
         private static UdpClient udpClient = new UdpClient();
         //private static UdpClient udpClient = new UdpClient(new Random().Next(12346, 12370));
-        private static IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port); // 请替换为实际的服务器 IP
+        private static IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse(NetConfig.IP), port); // 请替换为实际的服务器 IP
         private static List<User> users = new List<User>();
 
         // 登陆！
@@ -55,7 +56,7 @@ namespace LockStepDemoClient1
             {
                 try
                 {
-                    byte[] receivedData = udpClient.Receive(ref listenEndPoint);
+                    byte[] receivedData = udpClient.Receive(ref listenEndPoint); // 收到消息
                     BaseRequest baseRequest = ProtoBufUtils.SerializeBaseRequest(receivedData);
                     if (baseRequest.RequestType == RequestType.RtLogin )
                     {

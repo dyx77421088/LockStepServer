@@ -5,6 +5,10 @@ VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockStepDemo1", "LockStepDemo1\LockStepDemo1.csproj", "{C5BFF2A5-3125-4656-BA67-A952E9D98384}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commit", "Commit\Commit.csproj", "{D6BECB83-0DA6-4048-A6F6-B6C41670B627}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{2A2EE7A7-5AC2-4617-830F-7BE70877FE72}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{C5BFF2A5-3125-4656-BA67-A952E9D98384}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5BFF2A5-3125-4656-BA67-A952E9D98384}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5BFF2A5-3125-4656-BA67-A952E9D98384}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6BECB83-0DA6-4048-A6F6-B6C41670B627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6BECB83-0DA6-4048-A6F6-B6C41670B627}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6BECB83-0DA6-4048-A6F6-B6C41670B627}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6BECB83-0DA6-4048-A6F6-B6C41670B627}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A2EE7A7-5AC2-4617-830F-7BE70877FE72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A2EE7A7-5AC2-4617-830F-7BE70877FE72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A2EE7A7-5AC2-4617-830F-7BE70877FE72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A2EE7A7-5AC2-4617-830F-7BE70877FE72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

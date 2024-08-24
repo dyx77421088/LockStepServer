@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8E55C241-0C0E-42D9-B024-8FF57DEB3EBD}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>LockStepDemoClient1</RootNamespace>
-    <AssemblyName>LockStepDemoClient1</AssemblyName>
+    <ProjectGuid>{D6BECB83-0DA6-4048-A6F6-B6C41670B627}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Commit</RootNamespace>
+    <AssemblyName>Commit</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Commit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\LockStepDemo1\Commit\bin\Debug\Commit.dll</HintPath>
-    </Reference>
     <Reference Include="Google.Protobuf, Version=3.27.3.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.27.3\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
@@ -63,16 +57,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Config\NetConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Request\LoginRequest.cs" />
+    <Compile Include="Proto\output\Cs.cs" />
+    <Compile Include="Proto\output\Msg.cs" />
+    <Compile Include="Proto\output\Person.cs" />
+    <Compile Include="Proto\output\Request.cs" />
+    <Compile Include="Proto\output\Status.cs" />
+    <Compile Include="Proto\output\User.cs" />
+    <Compile Include="Utils\ProtoBufUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
+    <None Include="Proto\Cs.proto" />
+    <None Include="Proto\Msg.proto" />
+    <None Include="Proto\Person.proto" />
+    <None Include="Proto\Request.proto" />
+    <None Include="Proto\Status.proto" />
+    <None Include="Proto\User.proto" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
