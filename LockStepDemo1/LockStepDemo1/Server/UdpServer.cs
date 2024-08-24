@@ -65,7 +65,7 @@ namespace LockStepDemo1.Server
                 try
                 {
                     byte[] receivedData = udpServer.Receive(ref clientEndPoint);
-                    BaseRequest requset = ProtoBufUtils.SerializeBaseRequest(receivedData);
+                    BaseRequest requset = ProtoBufUtils.DeSerializeBaseRequest(receivedData);
                     // 处理接收到的数据...
                     HandleReceivedData(requset, clientEndPoint);
                 }
@@ -105,7 +105,7 @@ namespace LockStepDemo1.Server
         {
             Console.WriteLine("\n\n开始发消息了：");
             Msg msg = request.Msg;
-            byte[] message = ProtoBufUtils.DeSerializeBaseRequest(request);
+            byte[] message = ProtoBufUtils.SerializeBaseRequest(request);
             Console.WriteLine("我在这里是发");
             foreach (int id in activeClients.Keys)
             {
@@ -173,7 +173,7 @@ namespace LockStepDemo1.Server
                     Console.WriteLine($"新客户端: {client}");
                 }
             }
-            byte[] message = ProtoBufUtils.DeSerializeBaseRequest(baseRequest);
+            byte[] message = ProtoBufUtils.SerializeBaseRequest(baseRequest);
             udpServer.Send(message, message.Length, client);
         }
     }

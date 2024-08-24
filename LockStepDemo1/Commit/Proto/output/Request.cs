@@ -23,18 +23,19 @@ public static partial class RequestReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Cg1SZXF1ZXN0LnByb3RvGgpVc2VyLnByb3RvGglNc2cucHJvdG8aDFN0YXR1",
-          "cy5wcm90byKyAQoLQmFzZVJlcXVlc3QSDgoGdXNlcklkGAEgASgFEiEKC3Jl",
-          "cXVlc3RUeXBlGAIgASgOMgwuUmVxdWVzdFR5cGUSIQoLcmVxdWVzdERhdGEY",
-          "AyABKA4yDC5SZXF1ZXN0RGF0YRIVCgR1c2VyGAQgASgLMgUuVXNlckgAEhMK",
-          "A21zZxgFIAEoCzIELk1zZ0gAEhkKBnN0YXR1cxgGIAEoCzIHLlN0YXR1c0gA",
-          "QgYKBGRhdGEqOwoLUmVxdWVzdFR5cGUSDgoKUlRfVU5LTk9XThAAEgwKCFJU",
-          "X0xPR0lOEAESDgoKUlRfTUVTU0FHRRACKkkKC1JlcXVlc3REYXRhEg4KClJE",
-          "X1VOS05PV04QABILCgdSRF9VU0VSEAESDQoJUkRfU1RBVFVTEAISDgoKUkRf",
-          "TUVTU0FHRRADYgZwcm90bzM="));
+          "cy5wcm90bxoOTWF0Y2hpbmcucHJvdG8i0QEKC0Jhc2VSZXF1ZXN0Eg4KBnVz",
+          "ZXJJZBgBIAEoBRIhCgtyZXF1ZXN0VHlwZRgCIAEoDjIMLlJlcXVlc3RUeXBl",
+          "EiEKC3JlcXVlc3REYXRhGAMgASgOMgwuUmVxdWVzdERhdGESFQoEdXNlchgE",
+          "IAEoCzIFLlVzZXJIABITCgNtc2cYBSABKAsyBC5Nc2dIABIZCgZzdGF0dXMY",
+          "BiABKAsyBy5TdGF0dXNIABIdCghtYXRjaGluZxgHIAEoCzIJLk1hdGNoaW5n",
+          "SABCBgoEZGF0YSpJCgtSZXF1ZXN0VHlwZRIOCgpSVF9VTktOT1dOEAASDAoI",
+          "UlRfTE9HSU4QARIOCgpSVF9NRVNTQUdFEAISDAoIUlRfTUFUQ0gQAypJCgtS",
+          "ZXF1ZXN0RGF0YRIOCgpSRF9VTktOT1dOEAASCwoHUkRfVVNFUhABEg0KCVJE",
+          "X1NUQVRVUxACEg4KClJEX01FU1NBR0UQA2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { global::UserReflection.Descriptor, global::MsgReflection.Descriptor, global::StatusReflection.Descriptor, },
+        new pbr::FileDescriptor[] { global::UserReflection.Descriptor, global::MsgReflection.Descriptor, global::StatusReflection.Descriptor, global::MatchingReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::RequestType), typeof(global::RequestData), }, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::BaseRequest), global::BaseRequest.Parser, new[]{ "UserId", "RequestType", "RequestData", "User", "Msg", "Status" }, new[]{ "Data" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::BaseRequest), global::BaseRequest.Parser, new[]{ "UserId", "RequestType", "RequestData", "User", "Msg", "Status", "Matching" }, new[]{ "Data" }, null, null, null)
         }));
   }
   #endregion
@@ -57,6 +58,10 @@ public enum RequestType {
   /// –≈œ¢
   /// </summary>
   [pbr::OriginalName("RT_MESSAGE")] RtMessage = 2,
+  /// <summary>
+  /// ∆•≈‰
+  /// </summary>
+  [pbr::OriginalName("RT_MATCH")] RtMatch = 3,
 }
 
 /// <summary>
@@ -134,6 +139,9 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
         break;
       case DataOneofCase.Status:
         Status = other.Status.Clone();
+        break;
+      case DataOneofCase.Matching:
+        Matching = other.Matching.Clone();
         break;
     }
 
@@ -221,6 +229,18 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
     }
   }
 
+  /// <summary>Field number for the "matching" field.</summary>
+  public const int MatchingFieldNumber = 7;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::Matching Matching {
+    get { return dataCase_ == DataOneofCase.Matching ? (global::Matching) data_ : null; }
+    set {
+      data_ = value;
+      dataCase_ = value == null ? DataOneofCase.None : DataOneofCase.Matching;
+    }
+  }
+
   private object data_;
   /// <summary>Enum of possible cases for the "data" oneof.</summary>
   public enum DataOneofCase {
@@ -228,6 +248,7 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
     User = 4,
     Msg = 5,
     Status = 6,
+    Matching = 7,
   }
   private DataOneofCase dataCase_ = DataOneofCase.None;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -264,6 +285,7 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
     if (!object.Equals(User, other.User)) return false;
     if (!object.Equals(Msg, other.Msg)) return false;
     if (!object.Equals(Status, other.Status)) return false;
+    if (!object.Equals(Matching, other.Matching)) return false;
     if (DataCase != other.DataCase) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -278,6 +300,7 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
     if (dataCase_ == DataOneofCase.User) hash ^= User.GetHashCode();
     if (dataCase_ == DataOneofCase.Msg) hash ^= Msg.GetHashCode();
     if (dataCase_ == DataOneofCase.Status) hash ^= Status.GetHashCode();
+    if (dataCase_ == DataOneofCase.Matching) hash ^= Matching.GetHashCode();
     hash ^= (int) dataCase_;
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -321,6 +344,10 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
       output.WriteRawTag(50);
       output.WriteMessage(Status);
     }
+    if (dataCase_ == DataOneofCase.Matching) {
+      output.WriteRawTag(58);
+      output.WriteMessage(Matching);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -355,6 +382,10 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
       output.WriteRawTag(50);
       output.WriteMessage(Status);
     }
+    if (dataCase_ == DataOneofCase.Matching) {
+      output.WriteRawTag(58);
+      output.WriteMessage(Matching);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -382,6 +413,9 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
     }
     if (dataCase_ == DataOneofCase.Status) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(Status);
+    }
+    if (dataCase_ == DataOneofCase.Matching) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Matching);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -422,6 +456,12 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
           Status = new global::Status();
         }
         Status.MergeFrom(other.Status);
+        break;
+      case DataOneofCase.Matching:
+        if (Matching == null) {
+          Matching = new global::Matching();
+        }
+        Matching.MergeFrom(other.Matching);
         break;
     }
 
@@ -483,6 +523,15 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
           Status = subBuilder;
           break;
         }
+        case 58: {
+          global::Matching subBuilder = new global::Matching();
+          if (dataCase_ == DataOneofCase.Matching) {
+            subBuilder.MergeFrom(Matching);
+          }
+          input.ReadMessage(subBuilder);
+          Matching = subBuilder;
+          break;
+        }
       }
     }
   #endif
@@ -539,6 +588,15 @@ public sealed partial class BaseRequest : pb::IMessage<BaseRequest>
           }
           input.ReadMessage(subBuilder);
           Status = subBuilder;
+          break;
+        }
+        case 58: {
+          global::Matching subBuilder = new global::Matching();
+          if (dataCase_ == DataOneofCase.Matching) {
+            subBuilder.MergeFrom(Matching);
+          }
+          input.ReadMessage(subBuilder);
+          Matching = subBuilder;
           break;
         }
       }

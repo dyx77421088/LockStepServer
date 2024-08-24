@@ -1,4 +1,5 @@
 ﻿using Google.Protobuf;
+using System.Text.RegularExpressions;
 
 namespace Commit.Utils
 {
@@ -7,22 +8,36 @@ namespace Commit.Utils
     /// </summary>
     public class ProtoBufUtils
     {
-        public static BaseRequest SerializeBaseRequest(byte[] data)
+        public static BaseRequest DeSerializeBaseRequest(byte[] data)
         {
             return BaseRequest.Parser.ParseFrom(data);
         }
-        public static byte[] DeSerializeBaseRequest(BaseRequest baseRequest)
+        public static byte[] SerializeBaseRequest(BaseRequest baseRequest)
         {
             return baseRequest.ToByteArray();
         }
 
-        public static byte[] DeSerializeBaseRequest(User user, RequestType rt, RequestData rd)
+        public static byte[] SerializeBaseRequest(User user, RequestType rt, RequestData rd)
         {
             BaseRequest baseRequest = new BaseRequest()
             {
                 RequestType = rt,
                 RequestData = rd,
                 User = user,
+            };
+            return baseRequest.ToByteArray();
+        }
+        /// <summary>
+        /// 这种没有歧义的就不用RequestData了，也就是说RequestType为RequestType.RtMatch，那么它的类型一定是match
+        /// </summary>
+        /// <param name="match">匹配</param>
+        /// <returns></returns>
+        public static byte[] SerializeBaseRequest(Matching match)
+        {
+            BaseRequest baseRequest = new BaseRequest()
+            {
+                RequestType = RequestType.RtMatch,
+                Matching = match,
             };
             return baseRequest.ToByteArray();
         }

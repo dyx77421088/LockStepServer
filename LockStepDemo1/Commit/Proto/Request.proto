@@ -2,11 +2,13 @@ syntax = "proto3";
 import "User.proto"; // 导入外部的proto文件
 import "Msg.proto"; // 导入外部的proto文件
 import "Status.proto"; // 导入外部的proto文件
+import "Matching.proto"; // 导入外部的proto文件
 // 请求的类型
 enum RequestType {
     RT_UNKNOWN = 0; // 未知请求
     RT_LOGIN = 1; // 登陆请求
     RT_MESSAGE = 2; // 信息
+    RT_MATCH = 3; // 匹配
 }
 // 夹带的参数
 enum RequestData {
@@ -24,5 +26,6 @@ message BaseRequest {
         User user = 4;
         Msg msg = 5;
         Status status = 6;
+        Matching matching = 7;
     }
 }

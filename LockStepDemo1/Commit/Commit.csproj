@@ -61,6 +61,7 @@
     <Compile Include="Config\NetConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proto\output\Cs.cs" />
+    <Compile Include="Proto\output\Matching.cs" />
     <Compile Include="Proto\output\Msg.cs" />
     <Compile Include="Proto\output\Person.cs" />
     <Compile Include="Proto\output\Request.cs" />
@@ -75,6 +76,7 @@
     <None Include="Proto\Person.proto" />
     <None Include="Proto\Request.proto" />
     <None Include="Proto\Status.proto" />
+    <None Include="Proto\Matching.proto" />
     <None Include="Proto\User.proto" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
